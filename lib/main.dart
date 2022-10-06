@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lista_compras/login/tela-login.dart';
+
+import 'login/cadastro.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Lista de Compas App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const TelaLogin(),
+      home: const TelaCadastro(),
     );
   }
 }
