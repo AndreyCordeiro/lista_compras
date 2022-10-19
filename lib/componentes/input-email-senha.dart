@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'ajuda-usuario.dart';
+import 'package:lista_compras/componentes/ajuda-usuario.dart';
 
 class InputEmailSenha extends StatefulWidget {
   const InputEmailSenha({Key? key}) : super(key: key);
@@ -82,28 +81,7 @@ class _CampoSenhaState extends State<InputEmailSenha> {
               ),
             ),
           ),
-          Center(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width / 3,
-              child: Row(
-                children: [
-                  const Text(
-                    "Precisa de ajuda?",
-                    style: TextStyle(
-                      fontSize: 10.3,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () => AjudaUsuario().enviarEmail(),
-                    icon: const Icon(
-                      Icons.email,
-                      color: Color(0xFF6562DF),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          const AjudaUsuario(),
         ],
       ),
     );

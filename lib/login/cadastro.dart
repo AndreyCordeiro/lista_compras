@@ -11,16 +11,19 @@ class TelaCadastro extends StatefulWidget {
 class _TelaCadastroWidget extends State<TelaCadastro> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Cadastro"),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Cadastro"),
+        ),
+        body: const InputNomeEmailSenha(),
       ),
-      body: const InputNomeEmailSenha(),
     );
   }
 }
 
-void _criarConta(
-    {required String email,
-    required String senha,
-    required String nomeUsuario}) {}
+void _criarConta({
+  required String email,
+  required String senha,
+  required String nomeUsuario,
+}) {}

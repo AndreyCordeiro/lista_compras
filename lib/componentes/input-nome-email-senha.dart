@@ -83,7 +83,7 @@ class _InputNomeEmailSenhaState extends State<InputNomeEmailSenha> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
             child: Center(
               child: SizedBox(
                 width: 150,
@@ -93,33 +93,12 @@ class _InputNomeEmailSenhaState extends State<InputNomeEmailSenha> {
                       _efetuarCadastro(email: email, senha: senha);
                     }
                   },
-                  child: const Text('Efetuar Cadastro'),
+                  child: const Text('Criar Conta'),
                 ),
               ),
             ),
           ),
-          Center(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width / 3,
-              child: Row(
-                children: [
-                  const Text(
-                    "Precisa de ajuda?",
-                    style: TextStyle(
-                      fontSize: 10.3,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () => AjudaUsuario().enviarEmail(),
-                    icon: const Icon(
-                      Icons.email,
-                      color: Color(0xFF6562DF),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          const AjudaUsuario(),
         ],
       ),
     );
