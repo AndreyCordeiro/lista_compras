@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'efeitos/page-transition.dart';
 import 'login/tela-inicial.dart';
 
 void main() {
@@ -19,6 +20,15 @@ class MyApp extends StatelessWidget {
       title: 'Lista de Compas',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: CustomTransitionBuilder(),
+            TargetPlatform.iOS: CustomTransitionBuilder(),
+            TargetPlatform.macOS: CustomTransitionBuilder(),
+            TargetPlatform.windows: CustomTransitionBuilder(),
+            TargetPlatform.linux: CustomTransitionBuilder(),
+          },
+        ),
         primarySwatch: Colors.blue,
       ),
       home: const TelaInicial(),
