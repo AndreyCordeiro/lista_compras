@@ -76,7 +76,7 @@ class _CampoSenhaState extends State<InputEmailSenha> {
                       _fazerLogin(email: email, senha: senha);
                     }
                   },
-                  child: const Text('Efetuar Login'),
+                  child: const Text('Entrar'),
                 ),
               ),
             ),

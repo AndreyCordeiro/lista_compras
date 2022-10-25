@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lista_compras/login/login.dart';
 
+import 'cadastro/cadastro-item.dart';
 import 'efeitos/page-transition.dart';
+import 'home/lista-compras.dart';
 import 'login/tela-inicial.dart';
 
 void main() {
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         primarySwatch: Colors.blue,
       ),
-      home: const TelaInicial(),
+      home: const ListaCompras(),
     );
   }
 }

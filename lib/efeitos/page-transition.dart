@@ -10,7 +10,7 @@ class CustomTransitionBuilder extends PageTransitionsBuilder {
       Animation<double> animation,
       Animation<double> secondaryAnimation,
       Widget child) {
-    final tween = Tween(begin: 0.0, end: 1.0).chain(
+    final tween = Tween(begin: 1.5, end: 1.0).chain(
       CurveTween(
         curve: Curves.easeInOut,
       ),

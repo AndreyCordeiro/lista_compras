@@ -1,5 +1,5 @@
 class Item {
-  late int? id;
+  late dynamic id;
   late String nome;
   late String descricao;
   late double quantidade;

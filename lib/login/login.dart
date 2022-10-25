@@ -12,11 +12,24 @@ class TelaLogin extends StatefulWidget {
 class _TelaLoginWidget extends State<TelaLogin> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Login"),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Login"),
+        ),
+        body: Container(
+          padding: const EdgeInsets.only(top: 50),
+          child: Column(
+            children: const <Widget>[
+              CircleAvatar(
+                radius: 160,
+                backgroundImage: AssetImage('lib/images/politica-privacidade.png'),
+              ),
+              InputEmailSenha(),
+            ],
+          ),
+        ),
       ),
-      body: const InputEmailSenha(),
     );
   }
 }
