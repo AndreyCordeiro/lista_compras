@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lista_compras/componentes/ajuda-usuario.dart';
 
+import '../login/cadastro.dart';
+
 class InputEmailSenha extends StatefulWidget {
   const InputEmailSenha({Key? key}) : super(key: key);
 
@@ -80,6 +82,28 @@ class _CampoSenhaState extends State<InputEmailSenha> {
                 ),
               ),
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('Não possui conta? '),
+              InkWell(
+                child: const Text(
+                  'Cadastre-se',
+                  style: TextStyle(
+                    color: Colors.blueAccent,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TelaCadastro(),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
           const AjudaUsuario(),
         ],

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'ajuda-usuario.dart';
-
 class InputNomeEmailSenha extends StatefulWidget {
   const InputNomeEmailSenha({Key? key}) : super(key: key);
 
@@ -98,7 +96,6 @@ class _InputNomeEmailSenhaState extends State<InputNomeEmailSenha> {
               ),
             ),
           ),
-          const AjudaUsuario(),
         ],
       ),
     );

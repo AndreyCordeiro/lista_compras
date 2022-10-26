@@ -3,6 +3,7 @@ import 'package:lista_compras/login/cadastro.dart';
 
 import 'login.dart';
 
+@Deprecated('Esta tela não será mais utilizada')
 class TelaInicial extends StatefulWidget {
   const TelaInicial({Key? key}) : super(key: key);
 

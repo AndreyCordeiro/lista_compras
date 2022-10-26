@@ -6,27 +6,25 @@ class AjudaUsuario extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: SizedBox(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                "Entre em contato",
-                style: TextStyle(
-                  fontSize: 12,
-                ),
+    return Center(
+      child: SizedBox(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              "Entre em contato",
+              style: TextStyle(
+                fontSize: 12,
               ),
-              IconButton(
-                onPressed: () => UrlLauncher().enviarEmail(),
-                icon: const Icon(
-                  Icons.email,
-                  color: Colors.blueAccent,
-                ),
+            ),
+            IconButton(
+              onPressed: () => UrlLauncher().enviarEmail(),
+              icon: const Icon(
+                Icons.email,
+                color: Colors.blueAccent,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
