@@ -14,6 +14,7 @@ class _TelaLoginWidget extends State<TelaLogin> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text("Login"),
         ),

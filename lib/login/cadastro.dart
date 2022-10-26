@@ -13,6 +13,7 @@ class _TelaCadastroWidget extends State<TelaCadastro> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text("Cadastro"),
         ),
