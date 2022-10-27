@@ -112,4 +112,8 @@ class _CampoSenhaState extends State<InputEmailSenha> {
   }
 }
 
-void _fazerLogin({required String email, required String senha}) {}
+void _fazerLogin({required String email, required String senha}) {
+  // String path = join(await getDatabasesPath(), 'shopping_list');
+
+
+}
