@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lista_compras/sqflite/dao/itemDAO.dart';
+import 'package:lista_compras/model/carrinho.dart';
 
-import '../model/item.dart';
+import '../sqflite/dao/carrinhoDAO.dart';
 
 class CadastroItem extends StatefulWidget {
   const CadastroItem({Key? key}) : super(key: key);
@@ -11,16 +11,16 @@ class CadastroItem extends StatefulWidget {
 }
 
 class _CadastroItemState extends State<CadastroItem> {
+  CarrinhoDAO carrinhoDAO = CarrinhoDAO();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  ItemDAO itemDAO = ItemDAO();
-  late Item item;
+  late Carrinho carrinho;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cadastrar Item"),
+        title: const Text("Cadastrar Carrinho"),
       ),
       body: Form(
         key: _formKey,
@@ -31,42 +31,13 @@ class _CadastroItemState extends State<CadastroItem> {
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
                 decoration: const InputDecoration(
-                  hintText: 'Nome do item',
+                  hintText: 'Nome do carrinho',
                 ),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return 'Informe o nome do item!';
+                    return 'Informe o nome do carrinho!';
                   }
-                  item.nome = value;
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Descrição do item',
-                ),
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Informe a descrição do item!';
-                  }
-                  item.descricao = value;
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TextFormField(
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  hintText: 'Quantidade',
-                ),
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Informe a quantidade!';
-                  }
-                  item.quantidade = value as double;
+                  carrinho.nome = value;
                 },
               ),
             ),
@@ -78,7 +49,7 @@ class _CadastroItemState extends State<CadastroItem> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        itemDAO.salvarItem(item);
+                        carrinhoDAO.salvarCarrinho(carrinho);
                       }
                     },
                     child: const Text('Salvar'),
