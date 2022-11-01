@@ -1,4 +1,4 @@
-import 'package:lista_compras/sqflite/script.dart';
+import 'package:lista_compras/sqflite/banco/script.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

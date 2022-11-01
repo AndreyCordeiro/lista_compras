@@ -1,10 +1,10 @@
 import 'package:lista_compras/model/usuario.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'conexao.dart';
+import '../banco/conexao.dart';
 
 class UsuarioDAO {
-  Future<bool> salvar(Usuario usuario) async {
+  Future<bool> salvarUsuario(Usuario usuario) async {
     Database db = await Conexao.abrir();
     const sql = 'INSERT INTO usuario (nome, email, senha) VALUES (?,?,?)';
     var linhasAfetadas =
@@ -12,7 +12,7 @@ class UsuarioDAO {
     return linhasAfetadas > 0;
   }
 
-  Future<bool> alterar(Usuario usuario) async {
+  Future<bool> alterarUsuario(Usuario usuario) async {
     const sql = 'UPDATE usuario SET nome=?, email=?, senha=? WHERE id = ?';
     Database db = await Conexao.abrir();
     var linhasAfetadas = await db.rawUpdate(
@@ -20,7 +20,7 @@ class UsuarioDAO {
     return linhasAfetadas > 0;
   }
 
-  Future<bool> excluir(int id) async {
+  Future<bool> excluirUsuario(int id) async {
     late Database db;
     try {
       const sql = 'DELETE FROM usuario WHERE id = ?';
@@ -30,29 +30,30 @@ class UsuarioDAO {
     } catch (e) {
       throw Exception('Ocorreu um erro ao excluir o registro $id');
     } finally {
-      db.close();
+      // db.close();
     }
   }
 
-  Future<Usuario> consultar(int id) async {
+  Future<bool> consultarUsuario(String email) async {
     late Database db;
+    late bool emailExiste;
+
     try {
-      const sql = 'SELECT * FROM usuario WHERE id = ?';
+      const sql = 'SELECT * FROM usuario WHERE email = ?';
       db = await Conexao.abrir();
-      Map<String, Object?> resultado = (await db.rawQuery(sql, [id])).first;
+      Map<String, Object?> resultado = (await db.rawQuery(sql, [email])).first;
+
       if (resultado.isEmpty) {
-        throw Exception('Nenhum registro de id $id encontrado!');
+        emailExiste = false;
+      } else {
+        emailExiste = true;
       }
-      Usuario usuario = Usuario(
-          id: resultado['id'] as int,
-          nome: resultado['nome'].toString(),
-          email: resultado['email'].toString(),
-          senha: resultado['senha'].toString());
-      return usuario;
+
+      return emailExiste;
     } catch (e) {
-      throw Exception('Não foi possível retornar a consulta do registro $id');
+      throw Exception("Erro ao consultar Usuário");
     } finally {
-      db.close();
+      // db.close();
     }
   }
 }
