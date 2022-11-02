@@ -89,8 +89,9 @@ class _ListaCarrinhosState extends State<ListaCarrinhos> {
                         IconButton(
                           icon: const Icon(Icons.delete_forever,
                               color: Colors.red),
-                          onPressed: () {
-                            carrinhoDAO.excluirCarrinho(carrinho.id);
+                          onPressed: () async {
+                            await carrinhoDAO.excluirCarrinho(carrinho.id);
+                            setState(() {});
                           },
                         ),
                       ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lista_compras/componentes/ajuda-usuario.dart';
+import 'package:lista_compras/home/lista-carrinhos.dart';
 
 import '../login/cadastro.dart';
 
@@ -75,7 +76,14 @@ class _CampoSenhaState extends State<InputEmailSenha> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      _fazerLogin(email: email, senha: senha);
+                      // _fazerLogin(email: email, senha: senha);
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ListaCarrinhos(),
+                        ),
+                      ).then((value) => setState(() {}));
                     }
                   },
                   child: const Text('Entrar'),
@@ -114,6 +122,4 @@ class _CampoSenhaState extends State<InputEmailSenha> {
 
 void _fazerLogin({required String email, required String senha}) {
   // String path = join(await getDatabasesPath(), 'shopping_list');
-
-
 }

@@ -50,6 +50,8 @@ class _CadastroCarrinhoState extends State<CadastroCarrinho> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         carrinhoDAO.salvarCarrinho(carrinho);
+
+                        Navigator.pop(context);
                       }
                     },
                     child: const Text('Salvar'),

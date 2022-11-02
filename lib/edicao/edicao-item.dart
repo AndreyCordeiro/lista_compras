@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:lista_compras/sqflite/dao/itemDAO.dart';
 
 import '../model/item.dart';
 
@@ -17,10 +16,8 @@ class EdicaoItem extends StatefulWidget {
 }
 
 class _EdicaoItemState extends State<EdicaoItem> {
+  ItemDAO itemDAO = ItemDAO();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String? nome;
-  String? descricao;
-  String? quantidade;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +38,7 @@ class _EdicaoItemState extends State<EdicaoItem> {
                   if (value == null || value.isEmpty) {
                     return 'Informe o nome do item!';
                   }
-                  nome = value;
+                  widget.item.nome = value;
                   return null;
                 },
               ),
@@ -54,7 +51,7 @@ class _EdicaoItemState extends State<EdicaoItem> {
                   if (value == null || value.isEmpty) {
                     return 'Informe a descrição do item!';
                   }
-                  descricao = value;
+                  widget.item.descricao = value;
                   return null;
                 },
               ),
@@ -62,12 +59,13 @@ class _EdicaoItemState extends State<EdicaoItem> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
+                keyboardType: TextInputType.number,
                 initialValue: widget.item.quantidade.toString(),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return 'Informe a quantiade do item!';
                   }
-                  quantidade = value;
+                  widget.item.quantidade = double.parse(value);
                   return null;
                 },
               ),
@@ -80,12 +78,8 @@ class _EdicaoItemState extends State<EdicaoItem> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        _atualizar(
-                          nome!,
-                          descricao!,
-                          quantidade!,
-                          widget.item.id,
-                        );
+                        itemDAO.alterarItem(widget.item);
+
                         Navigator.pop(context);
                       }
                     },
@@ -98,20 +92,5 @@ class _EdicaoItemState extends State<EdicaoItem> {
         ),
       ),
     );
-  }
-
-  Future<int> _atualizar(String nome, String descricao, String quantidade,
-      [int? id]) async {
-    String path = join(await getDatabasesPath(), 'shopping_list');
-    Database dataBase = await openDatabase(path, version: 1);
-
-    String sql;
-    Future<int> linhasAfetadas;
-
-    sql =
-        "UPDATE item SET nome = ?, descricao = ?, quantidade = ? WHERE id = ?";
-    linhasAfetadas = dataBase.rawInsert(sql, [nome, descricao, quantidade, id]);
-
-    return linhasAfetadas;
   }
 }

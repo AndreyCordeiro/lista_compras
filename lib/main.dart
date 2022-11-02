@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lista_compras/home/lista-carrinhos.dart';
+import 'package:lista_compras/login/login.dart';
 
 import 'efeitos/page-transition.dart';
 
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         ),
         primarySwatch: Colors.blue,
       ),
-      home: const ListaCarrinhos(),
+      home: const TelaLogin(),
     );
   }
 }

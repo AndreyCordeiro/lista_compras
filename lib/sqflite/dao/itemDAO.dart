@@ -8,7 +8,7 @@ class ItemDAO {
   Future<bool> salvarItem(Item item) async {
     Database db = await Conexao.abrir();
     const sql =
-        'INSERT INTO item (nome, descricao, quantidade, id_carrinho) VALUES (?,?,?, ?)';
+        'INSERT INTO item (nome, descricao, quantidade, carrinho_id) VALUES (?,?,?, ?)';
     var linhasAfetadas = await db.rawInsert(
       sql,
       [
@@ -23,7 +23,7 @@ class ItemDAO {
 
   Future<bool> alterarItem(Item item) async {
     const sql =
-        'UPDATE item SET nome=?, descricao=?, quantidade=?, WHERE id = ?';
+        'UPDATE item SET nome=?, descricao=?, quantidade=? WHERE id_item = ?';
     Database db = await Conexao.abrir();
     var linhasAfetadas = await db.rawUpdate(
       sql,
@@ -41,7 +41,7 @@ class ItemDAO {
     late Database db;
 
     try {
-      const sql = 'DELETE FROM item WHERE id = ?';
+      const sql = 'DELETE FROM item WHERE id_item = ?';
       db = await Conexao.abrir();
       int linhasAfetadas = await db.rawDelete(sql, [id]);
 
@@ -57,7 +57,7 @@ class ItemDAO {
     late Database db;
 
     try {
-      const sql = 'SELECT * FROM item WHERE id = ?';
+      const sql = 'SELECT * FROM item WHERE id_item = ?';
       db = await Conexao.abrir();
       Map<String, Object?> resultado = (await db.rawQuery(sql, [id])).first;
 

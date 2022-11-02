@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:lista_compras/model/carrinho.dart';
 import 'package:lista_compras/sqflite/dao/itemDAO.dart';
 
 import '../model/item.dart';
 
 class CadastroItem extends StatefulWidget {
-  const CadastroItem({Key? key}) : super(key: key);
+  Carrinho carrinho;
+
+  CadastroItem({Key? key, required this.carrinho}) : super(key: key);
 
   @override
   State<CadastroItem> createState() => _CadastroItemState();
 }
 
 class _CadastroItemState extends State<CadastroItem> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   ItemDAO itemDAO = ItemDAO();
-  late Item item;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    Item item = Item(
+      nome: '',
+      descricao: '',
+      quantidade: 0.0,
+      carrinho: Carrinho(
+        id: widget.carrinho.id,
+        nome: widget.carrinho.nome,
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cadastrar Item"),
@@ -66,7 +77,7 @@ class _CadastroItemState extends State<CadastroItem> {
                   if (value == null || value.isEmpty) {
                     return 'Informe a quantidade!';
                   }
-                  item.quantidade = value as double;
+                  item.quantidade = double.parse(value);
                 },
               ),
             ),
@@ -79,6 +90,8 @@ class _CadastroItemState extends State<CadastroItem> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         itemDAO.salvarItem(item);
+
+                        Navigator.pop(context);
                       }
                     },
                     child: const Text('Salvar'),

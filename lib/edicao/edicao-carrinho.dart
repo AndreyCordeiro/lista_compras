@@ -15,7 +15,6 @@ class EdicaoCarrinho extends StatefulWidget {
 class _EdicaoCarrinhoState extends State<EdicaoCarrinho> {
   CarrinhoDAO carrinhoDAO = CarrinhoDAO();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String? nome;
 
   @override
   Widget build(BuildContext context) {
