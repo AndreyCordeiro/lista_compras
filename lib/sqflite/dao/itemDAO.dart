@@ -53,6 +53,22 @@ class ItemDAO {
     }
   }
 
+  Future<bool> excluirItensDoCarrinho(int id) async {
+    late Database db;
+
+    try {
+      const sql = 'DELETE FROM item WHERE carrinho_id = ?';
+      db = await Conexao.abrir();
+      int linhasAfetadas = await db.rawDelete(sql, [id]);
+
+      return linhasAfetadas > 0;
+    } catch (e) {
+      throw Exception('Ocorreu um erro ao excluir o registro $id');
+    } finally {
+      // db.close();
+    }
+  }
+
   Future<Item> consultarItem(int id) async {
     late Database db;
 

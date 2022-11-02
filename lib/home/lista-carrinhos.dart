@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:lista_compras/home/lista-itens.dart';
 import 'package:lista_compras/sqflite/dao/carrinhoDAO.dart';
+import 'package:lista_compras/sqflite/dao/itemDAO.dart';
 
 import '../cadastro/cadastro-carrinho.dart';
 import '../edicao/edicao-carrinho.dart';
@@ -18,6 +19,7 @@ class ListaCarrinhos extends StatefulWidget {
 class _ListaCarrinhosState extends State<ListaCarrinhos> {
   final _random = Random();
   CarrinhoDAO carrinhoDAO = CarrinhoDAO();
+  ItemDAO itemDAO = ItemDAO();
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +93,7 @@ class _ListaCarrinhosState extends State<ListaCarrinhos> {
                               color: Colors.red),
                           onPressed: () async {
                             await carrinhoDAO.excluirCarrinho(carrinho.id);
+                            await itemDAO.excluirItensDoCarrinho(carrinho.id);
                             setState(() {});
                           },
                         ),
