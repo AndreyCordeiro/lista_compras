@@ -36,7 +36,7 @@ class _EdicaoCarrinhoState extends State<EdicaoCarrinho> {
                   if (value == null || value.isEmpty) {
                     return 'Informe o nome do carrinho!';
                   }
-                  nome = value;
+                  widget.carrinho.nome = value;
                   return null;
                 },
               ),

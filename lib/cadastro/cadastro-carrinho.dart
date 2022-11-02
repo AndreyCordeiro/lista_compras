@@ -3,18 +3,18 @@ import 'package:lista_compras/model/carrinho.dart';
 
 import '../sqflite/dao/carrinhoDAO.dart';
 
-class CadastroItem extends StatefulWidget {
-  const CadastroItem({Key? key}) : super(key: key);
+class CadastroCarrinho extends StatefulWidget {
+  const CadastroCarrinho({Key? key}) : super(key: key);
 
   @override
-  State<CadastroItem> createState() => _CadastroItemState();
+  State<CadastroCarrinho> createState() => _CadastroCarrinhoState();
 }
 
-class _CadastroItemState extends State<CadastroItem> {
+class _CadastroCarrinhoState extends State<CadastroCarrinho> {
   CarrinhoDAO carrinhoDAO = CarrinhoDAO();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  late Carrinho carrinho;
+  Carrinho carrinho = Carrinho(id: null, nome: '');
 
   @override
   Widget build(BuildContext context) {

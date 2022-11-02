@@ -17,8 +17,9 @@ class CarrinhoDAO {
   }
 
   Future<bool> alterarCarrinho(Carrinho carrinho) async {
-    const sql = 'UPDATE carrinho SET nome=?, WHERE id = ?';
+    const sql = 'UPDATE carrinho SET nome=? WHERE id_carrinho = ?';
     Database db = await Conexao.abrir();
+
     var linhasAfetadas = await db.rawUpdate(
       sql,
       [
@@ -33,7 +34,7 @@ class CarrinhoDAO {
     late Database db;
 
     try {
-      const sql = 'DELETE FROM carrinho WHERE id = ?';
+      const sql = 'DELETE FROM carrinho WHERE id_carrinho = ?';
       db = await Conexao.abrir();
       int linhasAfetadas = await db.rawDelete(sql, [id]);
 
@@ -49,7 +50,7 @@ class CarrinhoDAO {
     late Database db;
 
     try {
-      const sql = 'SELECT * FROM carrinho WHERE id = ?';
+      const sql = 'SELECT * FROM carrinho WHERE id_carrinho = ?';
       db = await Conexao.abrir();
       Map<String, Object?> resultado = (await db.rawQuery(sql, [id])).first;
 
@@ -58,7 +59,7 @@ class CarrinhoDAO {
       }
 
       return Carrinho(
-        id: resultado['id'] as int,
+        id: resultado['id_carrinho'] as int,
         nome: resultado['nome'].toString(),
       );
     } catch (e) {
@@ -82,8 +83,8 @@ class CarrinhoDAO {
 
       List<Carrinho> itens = resultado.map((linha) {
         return Carrinho(
-          id: linha['id'] as int,
-          nome: linha['nome'].toString(),
+          id: linha["id_carrinho"] as int,
+          nome: linha["nome"].toString(),
         );
       }).toList();
       return itens;

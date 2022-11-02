@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lista_compras/home/lista-itens.dart';
 import 'package:lista_compras/sqflite/dao/carrinhoDAO.dart';
 
-import '../cadastro/cadastro-item.dart';
+import '../cadastro/cadastro-carrinho.dart';
 import '../edicao/edicao-carrinho.dart';
 import '../model/carrinho.dart';
 
@@ -66,26 +66,35 @@ class _ListaCarrinhosState extends State<ListaCarrinhos> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            ListaItens(carrinhoId: carrinho.id),
+                        builder: (context) => ListaItens(carrinho: carrinho),
                       ),
                     ).then((value) => setState(() {}));
                   },
-                  trailing: Row(
-                    children: <Widget>[
-                      IconButton(
-                        icon: const Icon(Icons.edit),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  EdicaoCarrinho(carrinho: carrinho),
-                            ),
-                          ).then((value) => setState(() {}));
-                        },
-                      ),
-                    ],
+                  trailing: SizedBox(
+                    width: 100,
+                    child: Row(
+                      children: <Widget>[
+                        IconButton(
+                          icon: const Icon(Icons.edit),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    EdicaoCarrinho(carrinho: carrinho),
+                              ),
+                            ).then((value) => setState(() {}));
+                          },
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete_forever,
+                              color: Colors.red),
+                          onPressed: () {
+                            carrinhoDAO.excluirCarrinho(carrinho.id);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -99,7 +108,7 @@ class _ListaCarrinhosState extends State<ListaCarrinhos> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const CadastroItem(),
+              builder: (context) => const CadastroCarrinho(),
             ),
           ).then((value) => setState(() {}));
         },
